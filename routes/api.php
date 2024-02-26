@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\ShortUrlController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,7 +13,10 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+Route::prefix('/v1')->group(function () {
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+    Route::post('/short-urls', [ShortUrlController::class, 'create'])
+        ->name('short.urls.create');
+
 });
+
